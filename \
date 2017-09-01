@@ -1,0 +1,66 @@
+<?php  /// Moodle Configuration File 
+
+unset($CFG);
+$CFG = new stdClass();
+
+$CFG->dbtype    = 'mysql';
+
+//$CFG->dbhost    = '1.55.145.213';
+$CFG->dbhost    = 'localhost';
+
+//$CFG->dbname    = 'tta.career.topica.vn';
+$CFG->dbname    = 'dbtta';
+
+//$CFG->dbuser    = 'ttacareer';
+$CFG->dbuser    = 'tta';
+
+//$CFG->dbpass    = 'U1n5MmbLROrDpHUrD58MDg';
+$CFG->dbpass    = 'vQneVGeJ%2017';
+
+$CFG->dbpersist =  false;
+
+
+$CFG->prefix    = 'mdl_';
+$CFG->tfront    = 'TTA';//dung cho hoc lieu ver2 UIUX
+$CFG->wwwroot   = 'http://tta.career.topica.vn';
+$CFG->dirroot   = '/var/www/html';
+$CFG->dataroot  = '/var/www/html/moodledata';
+$CFG->admin     = 'admin';
+
+$CFG->js='<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://notification.topica.vn/js/socket.io.js"></script>
+';
+
+$CFG->toicanlam[][]=array();
+$CFG->tempuser[]=array();
+
+
+$CFG->directorypermissions = 00777;  // try 02777 on a server in Safe Mode
+
+$CFG->usesid=true;
+
+require_once("$CFG->dirroot/lib/setup.php");
+
+$arrayUser = array_keys($USER->access['rdef']);
+$tmpArrExplode = explode(":",$arrayUser[0]);
+$ROLE_ID_LMS = $tmpArrExplode[1];
+$USER->rolenghiavd = $ROLE_ID_LMS;
+
+// MAKE SURE WHEN YOU EDIT THIS FILE THAT THERE ARE NO SPACES, BLANK LINES,
+
+// RETURNS, OR ANYTHING ELSE AFTER THE TWO CHARACTERS ON THE NEXT LINE.
+//Config for function search LMS
+$url_tim_kiem = 'http://42.112.28.154:1992/api/v1/search';
+/* danh muc tim kiem, http://dev.elearning.topica.vn/course/search.php */
+$danh_sach_category = array(
+    '-1' => 'Tất cả', 
+    '1' => 'Tài khoản', 
+    '2' => 'H2472',
+	'3' => 'Học liệu',
+    '4' => 'Khóa học', 
+    '5' => 'Diễn đàn', 
+);
+$CFG->token_search    = '8c4c4e15b672c9ae==';
+//End config for function search LMS
+?>
